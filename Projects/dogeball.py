@@ -27,7 +27,7 @@ window.tracer(0)
 # Section 2: Setup
 set_background("summer")
 s1 = create_sprite("basketball", 0, 0)
-# will use later create_sprite("soccerball",300, 0)
+s2 = create_sprite("soccerball",300, 0)
 
 
 # TODO - set the starting value for your variable
@@ -55,24 +55,39 @@ window.onkeypress(move_left, "Left")
 window.onkeypress(move_right, "Right")
 
 # Section 4: Game Loop
+
+
 window.listen()
 timer = 0
+obstacles = []
 while True:
 	time.sleep(0.1)
 	timer += 1  
 	 
 
  	# TODO - code for automatic actions
+	
 
-
+	if timer % 20 == 0:
+		y_position = random.randint (-250, 250)
+		s3 = create_sprite("baseball",200,y_position)
+		s3.setheading(180)
+		obstacles.append(s3)
+	
+	for s3 in obstacles:
+		s3.forward(10)
+		if get_distance(s1,s3) < 50:
+			lives -= 1
+			s3.hideturtle()
+			obstacles.remove(s3)
 
 
 
 
 	window.update()
 
-	# if :
-	# 	break
+	if lives == 0:
+		break
 	
 
 print("Game Over")
