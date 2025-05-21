@@ -27,7 +27,7 @@ window.tracer(0)
 # Section 2: Setup
 set_background("summer")
 s1 = create_sprite("basketball", 0, 0)
-s2 = create_sprite("soccerball",300, 0)
+
 
 
 # TODO - set the starting value for your variable
@@ -60,6 +60,7 @@ window.onkeypress(move_right, "Right")
 window.listen()
 timer = 0
 obstacles = []
+lives = 1
 while True:
 	time.sleep(0.1)
 	timer += 1  
@@ -77,9 +78,9 @@ while True:
 	for s3 in obstacles:
 		s3.forward(10)
 		if get_distance(s1,s3) < 50:
-			lives -= 1
 			s3.hideturtle()
 			obstacles.remove(s3)
+			lives = 0
 
 
 
